@@ -14,7 +14,7 @@
     "supabase:init": "supabase init",
     "supabase:login": "supabase login",
     "supabase:link": "supabase link --project-ref ${import.meta.env.VITE_SUPABASE_PROJECT_REF}",
-    "db:migrate:new": "supabase migration new projects-schema",
+    "db:migrate:new": "supabase migration new",
     "db:reset": "supabase db reset --linked",
     "db:seed": "node database/seed.js",
     "supabase:types": "npx supabase gen types typescript --project-id ${import.meta.env.VITE_SUPABASE_PROJECT_REF} --schema public > database/types.ts"
