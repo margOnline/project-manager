@@ -12,22 +12,12 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 </script>
 
 <template>
-  <nav class="h-16 border-b bg-muted/60 flex justify-between px-6 items-center">
+  <nav class="h-16 border-b bg-muted/80 flex justify-between px-6 items-center">
     <form class="relative h-fit w-full max-w-96">
-      <span class="absolute top-3 left-2.5 text-muted-foreground">
-        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-          <g
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-          >
-            <circle cx="11" cy="11" r="8" />
-            <path d="m21 21l-4.3-4.3" />
-          </g>
-        </svg>
-      </span>
+      <iconify-icon
+        class="absolute top-[50%] translate-y-[-50%] left-2.5 text-muted-foreground"
+        icon="lucide:search"
+      ></iconify-icon>
       <Input type="text" class="w-full bg-background pl-8" placeholder="Search ..." />
     </form>
     <DropdownMenu>
