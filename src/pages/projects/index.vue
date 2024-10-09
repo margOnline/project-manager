@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { Projects } from '@/utils/supaQueries'
 import { projectsQuery } from '@/utils/supaQueries'
 import { columns } from '@/utils/tableColumns/projectsColumns'
+import type { Projects } from '@/utils/supaQueries'
 
 usePageStore().pageData.title = 'Projects'
 
