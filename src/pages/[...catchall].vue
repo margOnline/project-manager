@@ -1,12 +1,7 @@
-<script setup lang="ts"></script>
-<template>
-  <div>
-    <h2>404 Not Found</h2>
-  </div>
-</template>
+<script setup lang="ts">
+useErrorStore().setError({ error: 'Page not found', customCode: 404 })
+</script>
 
-<style scoped>
-h2 {
-  color: red;
-}
-</style>
+<template>
+  <div></div>
+</template>
