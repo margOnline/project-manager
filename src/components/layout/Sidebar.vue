@@ -30,8 +30,7 @@ const accountLinks = [
   },
   {
     title: 'Sign out',
-    to: '/signout',
-    icon: 'lucide:badge-check'
+    icon: 'lucide:log-out'
   }
 ]
 </script>
