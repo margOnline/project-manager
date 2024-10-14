@@ -20,7 +20,7 @@ export const register = async (formData: RegisterForm) => {
     if (error) return console.log('Profiles insert err: ', error)
   }
 
-  authStore.setAuth(data.session)
+  await authStore.setAuth(data.session)
   return true
 }
 
@@ -32,6 +32,10 @@ export const signIn = async (formData: LoginForm) => {
 
   if (error) return console.error('Auth login err: ', error)
 
-  authStore.setAuth(data.session)
+  await authStore.setAuth(data.session)
   return true
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useAuthStore, import.meta.hot))
 }
