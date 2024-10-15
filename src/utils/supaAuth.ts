@@ -36,6 +36,15 @@ export const signIn = async (formData: LoginForm) => {
   return true
 }
 
+export const signout = async () => {
+  const { error } = await supabase.auth.signOut()
+
+  if (error) return console.error('Signout err: ', error)
+
+  await authStore.setAuth()
+  return true
+}
+
 if (import.meta.hot) {
   import.meta.hot.accept(acceptHMRUpdate(useAuthStore, import.meta.hot))
 }
