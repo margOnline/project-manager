@@ -40,7 +40,8 @@ const executeAction = async (linkTitle: string) => {
   if (linkTitle === 'Sign out') {
     const { signout } = await import('@/utils/supaAuth')
     const isSignedOut = await signout()
-    if (isSignedOut) router.push('/')
+
+    if (isSignedOut) router.push('/login')
   }
 }
 </script>
