@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { signIn } from '@/utils/supaAuth'
+import { watchDebounced } from '@vueuse/core'
 
 const router = useRouter()
 const formData = ref({
@@ -7,10 +8,21 @@ const formData = ref({
   password: ''
 })
 
-const login = async () => {
-  const isLoggedIn = await signIn(formData.value)
+const { serverError, handleServerError, realTimeErrors, handleLoginForm } = useFormErrors()
 
-  if (isLoggedIn) router.push('/')
+watchDebounced(
+  formData,
+  () => {
+    handleLoginForm(formData.value)
+  },
+  { debounce: 1000, deep: true }
+)
+
+const login = async () => {
+  const { error } = await signIn(formData.value)
+  if (!error) return router.push('/')
+
+  handleServerError(error)
 }
 </script>
 
@@ -35,7 +47,11 @@ const login = async () => {
               placeholder="johndoe19@example.com"
               required
               v-model="formData.email"
+              :class="{ 'border border-red-900': serverError }"
             />
+            <ul v-if="realTimeErrors?.email.length" class="text-left text-sm text-red-900">
+              <li v-for="error in realTimeErrors.email" :key="error">{{ error }}</li>
+            </ul>
           </div>
           <div class="grid gap-2">
             <div class="flex items-center">
@@ -48,8 +64,15 @@ const login = async () => {
               autocomplete
               required
               v-model="formData.password"
+              :class="{ 'border border-red-900': serverError }"
             />
+            <ul v-if="realTimeErrors?.password.length" class="text-left text-sm text-red-900">
+              <li v-for="error in realTimeErrors.password" :key="error">{{ error }}</li>
+            </ul>
           </div>
+          <ul v-if="serverError" class="text-left text-sm text-red-900">
+            <li>{{ serverError }}</li>
+          </ul>
           <Button type="submit" class="w-full"> Login </Button>
         </form>
         <div class="mt-4 text-sm text-center">

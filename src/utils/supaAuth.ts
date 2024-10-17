@@ -26,8 +26,7 @@ export const signIn = async (formData: LoginForm) => {
     password: formData.password
   })
 
-  if (error) return console.error('Auth login err: ', error)
-  return true
+  return { error }
 }
 
 export const signout = async () => {
